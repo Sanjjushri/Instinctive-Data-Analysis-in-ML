@@ -4,7 +4,7 @@ import sys
 app=Flask(__name__)
 app.secret_key="321"
 
-app.config['UPLOAD_FOLDER1']="Upload csv\static\csv"
+app.config['UPLOAD_FOLDER1']="flask-ui\static\csv"
 
 @app.route("/",methods=['GET','POST'])
 
