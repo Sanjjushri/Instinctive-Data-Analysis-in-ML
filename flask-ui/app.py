@@ -25,10 +25,13 @@ def upload():
 
     return render_template("upload.html") 
 
-def classifier():
+def result():
+     global csv
+    if request.method=='GET':
+
+
+
     
-
-
 
 
 
