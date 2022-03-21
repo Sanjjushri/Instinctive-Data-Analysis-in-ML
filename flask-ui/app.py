@@ -3,6 +3,7 @@
 from flask import Flask,render_template,request,flash
 import os
 import sys
+
 app=Flask(__name__)
 app.secret_key="321"
 
@@ -22,7 +23,14 @@ def upload():
     
       flash("File Upload Successfully","success")
 
-    return render_template("upload.html")
+    return render_template("upload.html") 
+
+def classifier():
+    
+
+
+
+
 
 if __name__ =='__main__':
     app.run(debug=True)
