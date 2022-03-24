@@ -36,7 +36,9 @@ def upload():
 
     return render_template("upload.html") 
 
-# def upload():
+# def result():
+#      global csv
+#     if request.method=='GET':
 
 #     global csv
 #     print("1==========================1")
