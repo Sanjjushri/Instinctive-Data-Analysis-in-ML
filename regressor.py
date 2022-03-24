@@ -1,21 +1,19 @@
 # Import necessary modules
 import pandas as pd
-import pandas as pd
 import warnings
 warnings.filterwarnings('ignore')
 from sklearn.model_selection import train_test_split
 from sklearn import preprocessing 
-from lazypredict.Supervised import LazyClassifier
+from lazypredict.Supervised import LazyRegressor
 
 
 # CSV_FILE_PATH = "datasets/vegetable_price.csv"
 
-def classifier(CSV_FILE_PATH):
+def regressor(CSV_FILE_PATH):
 
     label   = preprocessing.LabelEncoder() 
 
-    df      =  pd.read_csv(CSV_FILE_PATH)
-    # df = data
+    df = pd.read_csv(CSV_FILE_PATH)
     missing = df.isnull().values.any()
 
     if missing == True:
@@ -32,21 +30,21 @@ def classifier(CSV_FILE_PATH):
     df.drop_duplicates(inplace=True)
 
     X = df.iloc[:,:-1]
-    Y = df[df.columns[-1]]
+    y = df[df.columns[-1]]
 
-    X_train, X_test, Y_train, Y_test =train_test_split(X,Y,test_size=.3,random_state =23)
-    classi=LazyClassifier(verbose=0,predictions=True)
+    X_train, X_test, y_train, y_test = train_test_split(X, y,test_size=.3,random_state =123)
+    reg = LazyRegressor(verbose=0,ignore_warnings=True, custom_metric=None)
 
-    models_c, predictions_c = classi.fit(X_train, X_test, Y_train, Y_test)
+    models,predictions = reg.fit(X_train, X_test, y_train, y_test)
+    
+    print(models)
 
-    print(models_c)
-
-    return models_c
+    return models
 
 def startpy():
     
-    CSV_FILE_PATH = "../datasets/Iris.csv"
-    classifier(CSV_FILE_PATH)
+    CSV_FILE_PATH = "../datasets/vegetable_price.csv"
+    regressor(CSV_FILE_PATH)
 
 
 if __name__ == '__main__':

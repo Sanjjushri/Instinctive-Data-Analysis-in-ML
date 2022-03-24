@@ -15,7 +15,6 @@ def classifier(CSV_FILE_PATH):
     label   = preprocessing.LabelEncoder() 
 
     df      =  pd.read_csv(CSV_FILE_PATH)
-    # df = data
     missing = df.isnull().values.any()
 
     if missing == True:
