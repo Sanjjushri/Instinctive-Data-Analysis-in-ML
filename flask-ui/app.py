@@ -25,9 +25,9 @@ def upload():
 
     return render_template("upload.html") 
 
-def result():
-     global csv
-    if request.method=='GET':
+# def result():
+#      global csv
+#     if request.method=='GET':
 
 
 
