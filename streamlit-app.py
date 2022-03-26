@@ -17,6 +17,8 @@ from sklearn import preprocessing
 from lazypredict.Supervised import LazyClassifier
 from lazypredict.Supervised import LazyRegressor
 
+import matplotlib.pyplot as plt
+
 label   = preprocessing.LabelEncoder() 
 
 
@@ -24,16 +26,16 @@ def main():
     st.title("Instinctive Data Analysis")
     uploaded_file = st.file_uploader("Choose a file")
     if uploaded_file is not None:
-        # To read file as bytes:
-        bytes_data = uploaded_file.getvalue()
+        # # To read file as bytes:
+        # bytes_data = uploaded_file.getvalue()
         # st.write(bytes_data)
 
-        # To convert to a string based IO:
-        stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
+        # # To convert to a string based IO:
+        # stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
         # st.write(stringio)
 
-        # To read file as string:
-        string_data = stringio.read()
+        # # To read file as string:
+        # string_data = stringio.read()
         # st.write(string_data)
 
         # Can be used wherever a "file-like" object is accepted:
@@ -81,6 +83,27 @@ def main():
 
                 st.write(models_c)
 
+                plot_df = pd.DataFrame(models_c)
+
+                plot_df = plot_df.reset_index()
+
+                print(plot_df)
+
+                plt.rcParams["figure.figsize"] =[16,9]
+                plot_df.plot(x="Model",y="Accuracy",color="Red",kind="line",marker='o',markersize=12)
+                plt.xlabel("Model")
+                plt.ylabel('Accuracy')
+                plt.grid()
+                plt.show()
+
+                # fig, ax = plt.subplots()
+                # ax.scatter([1, 2, 3], [1, 2, 3])
+                
+                # st.pyplot(fig)
+                st.set_option('deprecation.showPyplotGlobalUse', False)
+
+                st.pyplot(x="Model",y="Accuracy")
+
                 return models_c
 
             
@@ -111,6 +134,20 @@ def main():
                 models,predictions = reg.fit(X_train, X_test, y_train, y_test)
                 
                 st.write(models)
+
+                plot_data = pd.DataFrame(models)
+                plot_data = plot_data.reset_index()
+
+                plt.rcParams["figure.figsize"] =[16,9]
+                plot_data.plot(x="Model",y="RMSE",color="Red",kind="line",marker='o',markersize=12)
+                plt.xlabel("Model")
+                plt.ylabel('RMSE')
+                plt.grid()
+                plt.show()
+
+                st.set_option('deprecation.showPyplotGlobalUse', False)
+
+                st.pyplot(x="Model",y="RMSE")
 
                 return models
 
