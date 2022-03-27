@@ -9,7 +9,6 @@ import regressor as reg
 
 # Import necessary modules
 import pandas as pd
-import pandas as pd
 import warnings
 warnings.filterwarnings('ignore')
 from sklearn.model_selection import train_test_split
@@ -23,7 +22,7 @@ label   = preprocessing.LabelEncoder()
 
 
 def main():
-    st.title("Instinctive Data Analysis")
+    st.title("Instinctive Data Analysis in Machine Learning")
     uploaded_file = st.file_uploader("Choose a file")
     if uploaded_file is not None:
         # # To read file as bytes:
